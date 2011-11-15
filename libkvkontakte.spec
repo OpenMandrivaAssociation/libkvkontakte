@@ -2,7 +2,7 @@
 %define gitdate 20111115
 
 %define major 1
-%define libname %mklibname kvkontakte
+%define libname %mklibname kvkontakte %{major}
 %define libnamedev %mklibname -d kvkontakte
 
 Name:            libkvkontakte

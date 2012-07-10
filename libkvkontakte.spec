@@ -1,5 +1,5 @@
 %define git 1
-%define gitdate 20111115
+%define gitdate 20120710
 
 %define major 1
 %define libname %mklibname kvkontakte %{major}
@@ -8,11 +8,11 @@
 Name:            libkvkontakte
 Summary:         Library for asynchronous interaction with vkontakte social network  
 Group:           System/Libraries
-Version:         1.0.0
+Version:         2.7.0
 Release:         %mkrel -c git%{gitdate} 1
 License:         GPLv2+ 
 Url:             https://projects.kde.org/projects/extragear/libs/libkvkontakte
-Source0:         %{name}.tar.xz
+Source0:         %{name}-%{gitdate}.tar.bz2
 BuildRequires:   qjson-devel
 BuildRequires:   kdelibs4-devel
 

@@ -9,7 +9,7 @@ Name:            libkvkontakte
 Summary:         Library for asynchronous interaction with vkontakte social network  
 Group:           System/Libraries
 Version:         2.7.0
-Release:         %mkrel -c git%{gitdate} 1
+Release:         %mkrel -c git%{gitdate} 2
 License:         GPLv2+ 
 Url:             https://projects.kde.org/projects/extragear/libs/libkvkontakte
 Source0:         %{name}-%{gitdate}.tar.bz2

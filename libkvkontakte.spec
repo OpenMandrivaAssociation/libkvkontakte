@@ -1,26 +1,24 @@
-%define git 1
-%define gitdate 20120710
+%define git	1
+%define gitdate	20120710
+%define major	1
+%define libname	%mklibname kvkontakte %{major}
+%define devname	%mklibname -d kvkontakte
 
-%define major 1
-%define libname %mklibname kvkontakte %{major}
-%define libnamedev %mklibname -d kvkontakte
-
-Name:            libkvkontakte
 Summary:         Library for asynchronous interaction with vkontakte social network  
+Name:            libkvkontakte
 Group:           System/Libraries
 Version:         2.7.0
-Release:         %mkrel -c git%{gitdate} 2
+Release:         0.git%{gitdate} 2
 License:         GPLv2+ 
 Url:             https://projects.kde.org/projects/extragear/libs/libkvkontakte
 Source0:         %{name}-%{gitdate}.tar.bz2
-BuildRequires:   qjson-devel
 BuildRequires:   kdelibs4-devel
+BuildRequires:   pkgconfig(QJson)
 
 %description
 KDE C++ library for asynchronous interaction with vkontakte.ru social
 network via its open API.
 
-#--------------------------------------------------------------------
 %package -n %{libname}
 Summary:         %{name} Library
 
@@ -28,35 +26,32 @@ Summary:         %{name} Library
 KDE C++ library for asynchronous interaction with vkontakte.ru social
 network via its open API.
 
-%files -n %{libname}
-%{_kde_libdir}/libkvkontakte.so.%{major}*
-
-#--------------------------------------------------------------------
-%package -n %{libnamedev}
+%package -n %{devname}
 Summary:         %{name} Developpement Files
 Group:           Development/C
 Requires:        %{libname} = %{version}-%{release}
-Provides:        libkvkontakte-devel = %{version}-%{release}
+Provides:        %{name}-devel = %{version}-%{release}
 Provides:        kvkontakte-devel = %{version}-%{release}
 
-%description -n %{libnamedev}
+%description -n %{devname}
 This package contains libraries and headers files needed to develop
 progams that need libkvkontakte.
 
-%files -n %{libnamedev}
-%{_kde_includedir}/libkvkontakte/
-%{_kde_libdir}/cmake/LibKVkontakte/
-%{_kde_libdir}/libkvkontakte.so
-
-#--------------------------------------------------------------------
 %prep
 %setup -q%{?git:n %{name}}
 
 %build
-%{cmake_kde4}
-%{make}
+%cmake_kde4
+%make
 
 %install
-rm -rf %{buildroot}
-%{makeinstall_std} -C build
+%makeinstall_std -C build
+
+%files -n %{libname}
+%{_kde_libdir}/libkvkontakte.so.%{major}*
+
+%files -n %{devname}
+%{_kde_includedir}/libkvkontakte/
+%{_kde_libdir}/cmake/LibKVkontakte/
+%{_kde_libdir}/libkvkontakte.so
 

@@ -51,6 +51,8 @@ progams that need libkvkontakte.
 %setup -q%{?git:n %{name}}
 
 %build
+# falls foul of 2.8.12
+sed -i 's/2.8.12/2.8.11/' CMakeLists.txt
 %cmake_kde4
 %make
 

@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   libkvkontakte-20120710.tar.bz2: 9e1a2495a87e73f312f401f1b256b6848c683f21
+sources:
+  libkvkontakte-4.12.0.tar.xz: 51232c697dcc02231e210dc6b309aa7c7b4ceecc

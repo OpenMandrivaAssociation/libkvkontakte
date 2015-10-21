@@ -1,5 +1,3 @@
-%define git	1
-%define gitdate	20120710
 %define major	1
 %define libname	%mklibname kvkontakte %{major}
 %define devname	%mklibname -d kvkontakte
@@ -7,11 +5,14 @@
 Summary:         Library for asynchronous interaction with vkontakte social network  
 Name:            libkvkontakte
 Group:           System/Libraries
-Version:         2.7.0
-Release:         0.git%{gitdate}.2
+Version:         4.12.0
+# epoch required as it used to be part of digikam
+# which has epoch 2 and released 4.13.0
+Epoch:		 3
+Release:         1
 License:         GPLv2+ 
 Url:             https://projects.kde.org/projects/extragear/libs/libkvkontakte
-Source0:         %{name}-%{gitdate}.tar.bz2
+Source0:         %{name}-%{version}.tar.xz
 BuildRequires:   kdelibs4-devel
 BuildRequires:   pkgconfig(QJson)
 
@@ -21,17 +22,26 @@ network via its open API.
 
 %package -n %{libname}
 Summary:         %{name} Library
+Requires:	%{name}-common = %{EVRD}
 
 %description -n %{libname}
+KDE C++ library for asynchronous interaction with vkontakte.ru social
+network via its open API.
+
+%package -n %{name}-common
+Summary:         %{name} Common files
+BuildArch:	noarch
+
+%description -n %{name}-common
 KDE C++ library for asynchronous interaction with vkontakte.ru social
 network via its open API.
 
 %package -n %{devname}
 Summary:         %{name} Developpement Files
 Group:           Development/C
-Requires:        %{libname} = %{version}-%{release}
-Provides:        %{name}-devel = %{version}-%{release}
-Provides:        kvkontakte-devel = %{version}-%{release}
+Requires:        %{libname} = %{EVRD}
+Provides:        %{name}-devel = %{EVRD}
+Provides:        kvkontakte-devel = %{EVRD}
 
 %description -n %{devname}
 This package contains libraries and headers files needed to develop
@@ -47,8 +57,13 @@ progams that need libkvkontakte.
 %install
 %makeinstall_std -C build
 
+%find_lang %{name}
+
+%files -n %{name}-common -f %{name}.lang
+
 %files -n %{libname}
 %{_kde_libdir}/libkvkontakte.so.%{major}*
+%{_kde_libdir}/libkvkontakte.so.%{version}
 
 %files -n %{devname}
 %{_kde_includedir}/libkvkontakte/

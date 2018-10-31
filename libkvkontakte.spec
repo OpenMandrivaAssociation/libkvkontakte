@@ -9,7 +9,7 @@ Version:         4.12.0
 # epoch required as it used to be part of digikam
 # which has epoch 2 and released 4.13.0
 Epoch:		 3
-Release:         1
+Release:         2
 License:         GPLv2+ 
 Url:             https://projects.kde.org/projects/extragear/libs/libkvkontakte
 Source0:         %{name}-%{version}.tar.xz

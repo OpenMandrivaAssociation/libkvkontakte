@@ -13,6 +13,7 @@ Release:         2
 License:         GPLv2+ 
 Url:             https://projects.kde.org/projects/extragear/libs/libkvkontakte
 Source0:         %{name}-%{version}.tar.xz
+BuildRequires:	make
 BuildRequires:   kdelibs4-devel
 BuildRequires:   pkgconfig(QJson)
 
